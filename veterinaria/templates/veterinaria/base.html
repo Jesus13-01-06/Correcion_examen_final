@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión veterinaria</title>
+</head>
+<body>
+
+<header>
+    <h1>Gestión de intervenciones veterinarias</h1>
+
+    <nav>
+        {% if user.is_authenticated %}
+
+            {% if user.rol == 1 %}
+                <a href="{% url 'crear_intervencion' %}">Crear intervención</a>
+                <a href="{% url 'lista_intervenciones' %}">Listar todas</a>
+                <a href="{% url 'busqueda_avanzada' %}">Búsqueda</a>
+            {% elif user.rol == 2 %}
+                <a href="{% url 'mis_animales' %}">Ver mis animales</a>
+                <a href="{% url 'busqueda_avanzada' %}">Búsqueda</a>
+            {% endif %}
+
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+            </form>
+
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'registro_veterinario' %}">Registro veterinario</a>
+            <a href="{% url 'registro_dueno' %}">Registro dueño</a>
+        {% endif %}
+    </nav>
+</header>
+
+<hr>
+
+{% block contenido %}
+{% endblock %}
+
+<hr>
+
+<footer>
+    <p>Examen Django - Intervenciones Veterinarias</p>
+</footer>
+
+</body>
+</html>

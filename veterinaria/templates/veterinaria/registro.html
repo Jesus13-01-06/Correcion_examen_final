@@ -1,0 +1,15 @@
+{% extends 'veterinaria/base.html' %}
+
+{% block contenido %}
+<h2>{{ titulo }}</h2>
+
+{% if tipo_registro == 'veterinario' %}
+    <form method="post" action="{% url 'registro_veterinario' %}">
+{% else %}
+    <form method="post" action="{% url 'registro_dueno' %}">
+{% endif %}
+    {% csrf_token %}
+    {{ formulario.as_p }}
+    <button type="submit">Registrarse</button>
+</form>
+{% endblock %}

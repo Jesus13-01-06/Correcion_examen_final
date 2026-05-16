@@ -1,0 +1,16 @@
+{% extends 'veterinaria/base.html' %}
+
+{% block contenido %}
+
+<h2>Eliminar intervención</h2>
+
+<p>¿Seguro que quieres eliminar "{{ intervencion.nombre }}"?</p>
+
+<form method="post" action="{% url 'eliminar_intervencion' intervencion.id %}">
+    {% csrf_token %}
+    <button type="submit">Sí, eliminar</button>
+</form>
+
+<a href="{% url 'lista_intervenciones' %}">Cancelar</a>
+
+{% endblock %}

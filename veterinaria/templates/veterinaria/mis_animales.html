@@ -1,0 +1,13 @@
+{% extends 'veterinaria/base.html' %}
+
+{% block contenido %}
+
+<h2>Mis animales</h2>
+
+{% for animal in animales %}
+    <p>{{ animal.nombre }} - {{ animal.especie }} - {{ animal.fecha_nacimiento }}</p>
+{% empty %}
+    <p>No tienes animales registrados.</p>
+{% endfor %}
+
+{% endblock %}

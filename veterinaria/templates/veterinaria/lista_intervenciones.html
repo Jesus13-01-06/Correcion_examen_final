@@ -1,0 +1,37 @@
+{% extends 'veterinaria/base.html' %}
+
+{% block contenido %}
+
+<h2>Listado de intervenciones</h2>
+
+{% for intervencion in intervenciones %}
+    <article>
+        <h3>{{ intervencion.nombre }}</h3>
+        <p><strong>Descripción:</strong> {{ intervencion.descripcion }}</p>
+        <p><strong>Tratamiento:</strong> {{ intervencion.tratamiento.nombre }}</p>
+        <p><strong>Nivel riesgo:</strong> {{ intervencion.nivel_riesgo }}</p>
+        <p><strong>Fecha programada:</strong> {{ intervencion.fecha_programada }}</p>
+        <p><strong>Fin recuperación:</strong> {{ intervencion.fecha_fin_recuperacion }}</p>
+        <p><strong>Completada:</strong> {{ intervencion.completada }}</p>
+        <p><strong>Veterinario:</strong> {{ intervencion.veterinario_responsable.usuario.username }}</p>
+
+        <p><strong>Animales:</strong></p>
+        <ul>
+            {% for animal in intervencion.animales.all %}
+                <li>{{ animal.nombre }} - {{ animal.especie }}</li>
+            {% empty %}
+                <li>No hay animales.</li>
+            {% endfor %}
+        </ul>
+
+        {% if user.rol == 1 and intervencion.veterinario_responsable.usuario == user %}
+            <a href="{% url 'editar_intervencion' intervencion.id %}">Editar</a>
+            <a href="{% url 'eliminar_intervencion' intervencion.id %}">Eliminar</a>
+        {% endif %}
+    </article>
+    <hr>
+{% empty %}
+    <p>No hay intervenciones.</p>
+{% endfor %}
+
+{% endblock %}

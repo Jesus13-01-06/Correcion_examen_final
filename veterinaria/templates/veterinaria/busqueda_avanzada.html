@@ -1,0 +1,27 @@
+{% extends 'veterinaria/base.html' %}
+
+{% block contenido %}
+
+<h2>Búsqueda avanzada</h2>
+
+<form method="get" action="{% url 'busqueda_avanzada' %}">
+    {{ formulario.as_p }}
+    <button type="submit">Buscar</button>
+</form>
+
+<hr>
+
+{% for intervencion in intervenciones %}
+    <article>
+        <h3>{{ intervencion.nombre }}</h3>
+        <p>{{ intervencion.descripcion }}</p>
+        <p>Riesgo: {{ intervencion.nivel_riesgo }}</p>
+        <p>Fecha: {{ intervencion.fecha_programada }}</p>
+        <p>Completada: {{ intervencion.completada }}</p>
+    </article>
+    <hr>
+{% empty %}
+    <p>No hay resultados.</p>
+{% endfor %}
+
+{% endblock %}

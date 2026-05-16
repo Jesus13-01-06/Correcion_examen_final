@@ -1,0 +1,172 @@
+[
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Dueños",
+        "permissions": [
+            [
+                "view_animal",
+                "veterinaria",
+                "animal"
+            ],
+            [
+                "view_intervencion",
+                "veterinaria",
+                "intervencion"
+            ],
+            [
+                "view_tratamiento",
+                "veterinaria",
+                "tratamiento"
+            ]
+        ]
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Veterinarios",
+        "permissions": [
+            [
+                "view_animal",
+                "veterinaria",
+                "animal"
+            ],
+            [
+                "add_intervencion",
+                "veterinaria",
+                "intervencion"
+            ],
+            [
+                "change_intervencion",
+                "veterinaria",
+                "intervencion"
+            ],
+            [
+                "delete_intervencion",
+                "veterinaria",
+                "intervencion"
+            ],
+            [
+                "view_intervencion",
+                "veterinaria",
+                "intervencion"
+            ],
+            [
+                "view_tratamiento",
+                "veterinaria",
+                "tratamiento"
+            ]
+        ]
+    }
+},
+{
+    "model": "veterinaria.usuario",
+    "fields": {
+        "password": "pbkdf2_sha256$870000$yBnf4Hq99xvG70lEyhX7KB$4dt3oBtTjY3rkiGVKeJvchlgp3pz7J3/DK572p3J85Q=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "veterinario1",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-05-12T10:53:05.123",
+        "rol": 1,
+        "groups": [
+            [
+                "Veterinarios"
+            ]
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "veterinaria.usuario",
+    "fields": {
+        "password": "pbkdf2_sha256$870000$TrSRLwVyPsgUxUxtzioDMD$bh276/xbke7m8PiUvDJyJYtSL5NzEh8r4f6L1bE9X+o=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "dueno1",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-05-12T10:53:05.714",
+        "rol": 2,
+        "groups": [
+            [
+                "Dueños"
+            ]
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "veterinaria.veterinario",
+    "pk": 1,
+    "fields": {
+        "usuario": [
+            "veterinario1"
+        ],
+        "numero_colegiado": "COL123"
+    }
+},
+{
+    "model": "veterinaria.dueno",
+    "pk": 1,
+    "fields": {
+        "usuario": [
+            "dueno1"
+        ]
+    }
+},
+{
+    "model": "veterinaria.animal",
+    "pk": 1,
+    "fields": {
+        "nombre": "Rex",
+        "especie": "Perro",
+        "fecha_nacimiento": "2025-05-12",
+        "dueno": 1
+    }
+},
+{
+    "model": "veterinaria.animal",
+    "pk": 2,
+    "fields": {
+        "nombre": "Misi",
+        "especie": "Gato",
+        "fecha_nacimiento": "2025-07-16",
+        "dueno": 1
+    }
+},
+{
+    "model": "veterinaria.tratamiento",
+    "pk": 1,
+    "fields": {
+        "nombre": "Tratamiento Apto",
+        "apto_para_intervenciones": true
+    }
+},
+{
+    "model": "veterinaria.intervencion",
+    "pk": 1,
+    "fields": {
+        "nombre": "Intervencion de prueba",
+        "descripcion": "Descripcion larga de prueba para superar los cien caracteres necesarios en la validacion del formulario del examen de Django veterinaria.",
+        "tratamiento": 1,
+        "nivel_riesgo": 5,
+        "fecha_programada": "2026-05-12",
+        "fecha_fin_recuperacion": "2026-06-11",
+        "completada": false,
+        "veterinario_responsable": 1,
+        "animales": [
+            1,
+            2
+        ]
+    }
+}
+]
